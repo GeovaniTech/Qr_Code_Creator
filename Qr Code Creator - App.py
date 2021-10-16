@@ -1,3 +1,4 @@
+import os
 import tkinter.dnd
 import shutil
 import qrcode
@@ -26,23 +27,29 @@ class QrCodeCreator(QMainWindow):
 
         link = self.ui.line_link.text()
 
-        qr = qrcode.QRCode(
-            version=1,
-            box_size=10,
-            border=0
-        )
+        root = Tk()
+        root.iconbitmap('View/RC/Qr-Code-Creator.ico')
 
-        qr.add_data(link)
-        qr.make(fit=True)
-        img = qr.make_image(fill='black', back_color='transparent')
-        img.save('YourQrCode.png')
-
-        Tk().withdraw()
+        root.withdraw()
         directory = askdirectory()
 
-        shutil.move('YourQrCode.png', directory)
+        if directory != '':
+            qr = qrcode.QRCode(
+                version=1,
+                box_size=10,
+                border=0
+            )
 
+            qr.add_data(link)
+            qr.make(fit=True)
+            img = qr.make_image(fill='black', back_color='transparent')
+            img.save('YourQrCode.png')
 
+            try:
+                shutil.move('YourQrCode.png', directory)
+            except:
+                self.PopupErrorSaveFile()
+                os.remove('YourQrCode.png')
 
     def UpdateQrCodeInterface(self):
         pixmapBlack = QPixmap(r'View/RC/Qr Code - Black.png')
@@ -52,6 +59,16 @@ class QrCodeCreator(QMainWindow):
             self.ui.lbl_qrcode_link.setPixmap(pixmapBlack)
         else:
             self.ui.lbl_qrcode_link.setPixmap(pixmapGray)
+
+    def PopupErrorSaveFile(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Erro - Salvar QrCode")
+        msg.setText('Verique se não há um arquivo já existente!')
+
+        icon = QIcon()
+        icon.addPixmap(QPixmap("View/RC/Qr-Code-Creator.ico"), QIcon.Normal, QIcon.Off)
+        msg.setWindowIcon(icon)
+        x = msg.exec_()
 
 
 if __name__ == '__main__':
