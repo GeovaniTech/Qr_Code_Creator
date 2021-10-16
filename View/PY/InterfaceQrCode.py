@@ -92,4 +92,4 @@ class Ui_QrCodeCreator(object):
         self.line_link.setPlaceholderText(_translate("QrCodeCreator", "Link"))
         self.lbl_nome_app.setText(_translate("QrCodeCreator", "Qr Code Creator"))
         self.lbl_criador.setText(_translate("QrCodeCreator", "by Geovani Debastiani"))
-import arquivo_rc
+from View.PY import arquivo
