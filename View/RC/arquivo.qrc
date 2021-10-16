@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="Imagens">
+    <file>Qr-Code-Creator.ico</file>
     <file>undraw_connected_world_wuay.svg</file>
     <file>Qr Code - Black.png</file>
     <file>Qr Code - Gray.png</file>

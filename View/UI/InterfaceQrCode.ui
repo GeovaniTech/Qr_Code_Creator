@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Qr Code Creator</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../RC/arquivo.qrc">
+    <normaloff>:/Imagens/Qr-Code-Creator.ico</normaloff>:/Imagens/Qr-Code-Creator.ico</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: white;</string>
   </property>
