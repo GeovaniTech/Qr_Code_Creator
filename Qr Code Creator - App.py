@@ -1,3 +1,5 @@
+import tkinter.dnd
+import shutil
 import qrcode
 import sys
 
@@ -5,6 +7,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from View.PY.InterfaceQrCode import Ui_QrCodeCreator
+from tkinter.filedialog import askdirectory
+from tkinter import Tk
 
 
 class QrCodeCreator(QMainWindow):
@@ -32,6 +36,13 @@ class QrCodeCreator(QMainWindow):
         qr.make(fit=True)
         img = qr.make_image(fill='black', back_color='transparent')
         img.save('YourQrCode.png')
+
+        Tk().withdraw()
+        directory = askdirectory()
+
+        shutil.move('YourQrCode.png', directory)
+
+
 
     def UpdateQrCodeInterface(self):
         pixmapBlack = QPixmap(r'View/RC/Qr Code - Black.png')
