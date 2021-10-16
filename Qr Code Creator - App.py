@@ -1,5 +1,4 @@
 import os
-import tkinter.dnd
 import shutil
 import qrcode
 import sys
